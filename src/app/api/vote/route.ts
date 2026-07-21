@@ -123,7 +123,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       {
-        data: { document: null, voteresult: upvotes.total - downvotes.total },
+        data: { document: null, voteResult: upvotes.total - downvotes.total },
         message: "vote withdrawn",
       },
       {
