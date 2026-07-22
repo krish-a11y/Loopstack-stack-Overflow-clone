@@ -345,3 +345,4 @@ const QuestionForm = ({ question }: { question?: Question }) => {
     </form>
   );
 };
+export  default QuestionForm

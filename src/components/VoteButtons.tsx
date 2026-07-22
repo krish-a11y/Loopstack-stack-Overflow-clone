@@ -150,3 +150,5 @@ const VoteButtons = ({
       </div>
     );
 };
+
+export default VoteButtons;
