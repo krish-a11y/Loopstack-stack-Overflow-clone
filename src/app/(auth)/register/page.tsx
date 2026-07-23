@@ -41,6 +41,12 @@ function RegisterPage() {
   // for displaying the error if there are any
   const [error, setError] = useState("");
 
+  // Email validation function
+  const isValidEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   // handel submit function
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     // preventing the default behavoiur of the form
@@ -55,7 +61,19 @@ function RegisterPage() {
 
     // validating the data throiwing the error if any data is missing
     if (!firstname || !lastname || !email || !password) {
-      setError(() => "please fill all  the details");
+      setError("Please fill all the details");
+      return;
+    }
+
+    // Validate email format
+    if (!isValidEmail(email.toString())) {
+      setError("Please enter a valid email address (e.g., user@example.com)");
+      return;
+    }
+
+    // Validate password length
+    if (password.toString().length < 8) {
+      setError("Password must be at least 8 characters long");
       return;
     }
 
@@ -102,16 +120,17 @@ function RegisterPage() {
       </p>
 
       {error && (
-        <p className="mt-8 text-center text-sm text-red-500 dark:text-red-400">
-          {error}
-        </p>
+        <div className="mt-6 rounded-lg border border-red-300 bg-red-50 p-4 dark:border-red-700 dark:bg-red-950">
+          <p className="text-sm font-medium text-red-800 dark:text-red-200">
+            {error}
+          </p>
+        </div>
       )}
       <form className="my-8" onSubmit={handleSubmit}>
         <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-x-2 md:space-y-0">
           <LabelInputContainer>
             <Label htmlFor="firstname">First name</Label>
             <Input
-              className="text-black"
               id="firstname"
               name="firstname"
               placeholder="Tyler"
@@ -121,7 +140,6 @@ function RegisterPage() {
           <LabelInputContainer>
             <Label htmlFor="lastname">Last name</Label>
             <Input
-              className="text-black"
               id="lastname"
               name="lastname"
               placeholder="Durden"
@@ -132,7 +150,6 @@ function RegisterPage() {
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
           <Input
-            className="text-black"
             id="email"
             name="email"
             placeholder="projectmayhem@fc.com"
@@ -142,12 +159,14 @@ function RegisterPage() {
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
           <Input
-            className="text-black"
             id="password"
             name="password"
             placeholder="••••••••"
             type="password"
           />
+          <p className="text-xs text-neutral-500 dark:text-neutral-400">
+            Minimum 8 characters
+          </p>
         </LabelInputContainer>
 
         <button
