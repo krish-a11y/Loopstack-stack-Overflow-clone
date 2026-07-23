@@ -2,13 +2,16 @@
 import env from "@/env";
 import { Avatars, Client, Storage, Users, Databases } from "node-appwrite";
 
+const endpoint = env.appwrite.endpoint || "";
+const projectId = env.appwrite.projectId || "";
+const apiKey = env.appwrite.apikey || "";
+
 // connecting to the respective project and endpoint
 const client = new Client();
 
-client
-  .setEndpoint(env.appwrite.endpoint)
-  .setProject(env.appwrite.projectId)
-  .setKey(env.appwrite.apikey);
+if (endpoint && projectId && apiKey) {
+  client.setEndpoint(endpoint).setProject(projectId).setKey(apiKey);
+}
 
 // creating the service components
 const users = new Users(client);
