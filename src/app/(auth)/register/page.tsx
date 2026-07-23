@@ -83,9 +83,9 @@ function RegisterPage() {
 
     // creating new user
     const response = await createAccount(
-      `${firstname} ${lastname}`,
       email.toString(), //for TS
       password.toString(),
+      `${firstname} ${lastname}`,
     );
 
     // if there is any error while creating the user
