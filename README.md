@@ -2,7 +2,7 @@
 
 **LoopStack** is a modern, full-stack Q&A application inspired by Stack Overflow — built with **Next.js**, **Appwrite**, and **Tailwind CSS**. It offers a polished, developer-friendly experience for asking questions, discovering discussions, and engaging with a growing community.
 
-**🔗 Live Demo:** [ ADD DEPLOYMENT LINK HERE ]
+**🔗 Live Demo:** https://loopstack-stack-overflow-clone.vercel.app/
 
 ---
 
@@ -20,7 +20,6 @@
 - [Deployment](#-deployment)
 - [Project Goals](#-project-goals)
 - [Contributing](#-contributing)
-- [License](#-license)
 - [Credits](#-credits)
 
 ---
