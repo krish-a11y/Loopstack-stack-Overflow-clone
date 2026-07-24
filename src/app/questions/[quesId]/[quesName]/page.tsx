@@ -62,6 +62,16 @@ const Page = async ({
     ]),
   ]);
 
+  // Serialize to plain objects so they can safely cross the server -> client boundary
+  const plainUpvotes = {
+    total: upvotes.total,
+    documents: JSON.parse(JSON.stringify(upvotes.documents)),
+  };
+  const plainDownvotes = {
+    total: downvotes.total,
+    documents: JSON.parse(JSON.stringify(downvotes.documents)),
+  };
+
   // since it is dependent on the question, we fetch it here outside of the Promise.all
   const author = await users.get<UserPrefs>(question.authorId);
   const [commentsData, answersData] = await Promise.all([
@@ -128,8 +138,14 @@ const Page = async ({
           content: answer.content,
           authorId: answer.authorId,
           comments: { ...comments, documents: answerComments },
-          upvotesDocuments: upvotes,
-          downvotesDocuments: downvotes,
+          upvotesDocuments: {
+            total: upvotes.total,
+            documents: JSON.parse(JSON.stringify(upvotes.documents)),
+          },
+          downvotesDocuments: {
+            total: downvotes.total,
+            documents: JSON.parse(JSON.stringify(downvotes.documents)),
+          },
           author: {
             $id: author.$id,
             name: author.name,
@@ -176,8 +192,8 @@ const Page = async ({
               type="question"
               id={question.$id}
               className="w-full"
-              upvotes={upvotes}
-              downvotes={downvotes}
+              upvotes={plainUpvotes}
+              downvotes={plainDownvotes}
             />
             <EditQuestion
               questionId={question.$id}

@@ -11,12 +11,9 @@ const RTE = dynamic<MDEditorProps>(
   },
 );
 
-// Markdown Preview
+// Markdown Preview (read-only rendering of markdown content)
 export const MarkdownPreview = dynamic(
-  () =>
-    import("@uiw/react-md-editor").then((mod) => {
-      return () => null;
-    }),
+  () => import("@uiw/react-md-editor").then((mod) => mod.default.Markdown),
   {
     ssr: false,
   },
