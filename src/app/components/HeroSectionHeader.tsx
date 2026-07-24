@@ -1,6 +1,10 @@
 "use client";
 
-import IconCloud from "@/components/magicui/icon-cloud";
+import dynamic from "next/dynamic";
+
+const IconCloud = dynamic(() => import("@/components/magicui/icon-cloud"), {
+  ssr: false,
+});
 import Particles from "@/components/magicui/particles";
 import ShimmerButton from "@/components/magicui/shimmer-button";
 import { useAuthStore } from "@/store/Auth";

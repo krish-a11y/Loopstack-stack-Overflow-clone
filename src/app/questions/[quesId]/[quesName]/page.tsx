@@ -196,7 +196,7 @@ const Page = async ({
             />
             <picture>
               <img
-                src={storage.getFilePreview(
+                src={storage.getFileView(
                   questionAttachmentBucket,
                   question.attachmentId,
                 )}

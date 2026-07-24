@@ -50,7 +50,7 @@ export default async function HeroSection() {
           title: q.title,
           link: `/questions/${q.$id}/${slugify(q.title)}`,
           thumbnail: q.attachmentId
-            ? storage.getFilePreview(questionAttachmentBucket, q.attachmentId)
+            ? storage.getFileView(questionAttachmentBucket, q.attachmentId)
             : fallbackThumbnail,
         }))}
       />
